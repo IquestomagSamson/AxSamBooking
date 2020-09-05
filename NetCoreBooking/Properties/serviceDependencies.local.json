@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql.local",
+      "connectionId": "RoomContext"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "BookingContext"
+    },
+    "mssql3": {
+      "type": "mssql.local",
+      "connectionId": "AxContext"
+    }
+  }
+}

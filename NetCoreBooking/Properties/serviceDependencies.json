@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "RoomContext"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "BookingContext"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "AxContext"
+    }
+  }
+}

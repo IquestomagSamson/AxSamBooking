@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Booking_Room.Models.Booking>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.booking_title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.start_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.end_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.participants)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.users_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.booking_title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.end_time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.participants)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.users_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.room_id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.booking_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.booking_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.booking_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

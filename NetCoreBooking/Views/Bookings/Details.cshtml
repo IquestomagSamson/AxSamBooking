@@ -1,0 +1,61 @@
+﻿@model Booking_Room.Models.Booking
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.booking_title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.booking_title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.start_time)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.start_time)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.end_time)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.end_time)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.participants)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.participants)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.users_id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.users_id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Room.room_id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.booking_id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

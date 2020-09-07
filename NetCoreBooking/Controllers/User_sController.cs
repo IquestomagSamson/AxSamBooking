@@ -63,7 +63,8 @@ namespace NetCoreBooking.Controllers
                 ViewBag.pageCurrent: nhận giá trị page hiện tại
                 totalPage: tổng của tất cả dữ liệu bài
                 totalNumsize: tổng số trang cần hiển thị
-                Math.Ceiling: hàm dùng làm tròn số thập phân*/
+                Math.Ceiling: hàm dùng làm tròn số thập phân
+            */
         }
 
 

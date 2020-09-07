@@ -5,7 +5,6 @@ C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\bin\Debug\netcoreap
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\bin\Debug\netcoreapp2.1\NetCoreBooking.runtimeconfig.json
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\bin\Debug\netcoreapp2.1\NetCoreBooking.runtimeconfig.dev.json
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\bin\Debug\netcoreapp2.1\NetCoreBooking.dll
-C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.csprojAssemblyReference.cache
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.AssemblyInfoInputs.cache
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.AssemblyInfo.cs
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.RazorAssemblyInfo.cache
@@ -33,7 +32,6 @@ C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreap
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.dll
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.pdb
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.csproj.CopyComplete
-C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.csproj.CoreCompileInputs.cache
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\bin\Debug\netcoreapp2.1\Properties\serviceDependencies.json
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\bin\Debug\netcoreapp2.1\Properties\serviceDependencies.local.json
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Bookings\Create.cshtml.g.cs
@@ -51,3 +49,5 @@ C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreap
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Rooms\Details.cshtml.g.cs
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Rooms\Edit.cshtml.g.cs
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Rooms\Index.cshtml.g.cs
+C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.csproj.CoreCompileInputs.cache
+C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.csprojAssemblyReference.cache

@@ -9,10 +9,15 @@ namespace NetCoreBooking.Data
 {
     public class AxContext : DbContext
     {
+        public AxContext()
+        {
+        }
+
         public AxContext (DbContextOptions<AxContext> options)
             : base(options)
         {
         }
+        
 
         public DbSet<Booking_Room.Models.Booking> Booking { get; set; }
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Booking_Room.Models;
+using PagedList;
 using NetCoreBooking.Data;
 
 namespace NetCoreBooking.Controllers
@@ -18,31 +19,24 @@ namespace NetCoreBooking.Controllers
         {
             _context = context;
         }
+        public AxContext db = new AxContext();
 
         // GET: Bookings
-        public async Task<IActionResult> Index()
+      
+        public async Task<IActionResult> Index(string seacrhString)
         {
-            var axContext = _context.Booking.Include(b => b.Room);
-            return View(await axContext.ToListAsync());
-        }
+            var bks = from m in _context.Booking select m;
 
-        // GET: Bookings/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
+            if (!String.IsNullOrEmpty(seacrhString))
             {
-                return NotFound();
+                bks = bks.Where(s => s.booking_title.Contains(seacrhString));
             }
+            //var axContext = _context.Booking.Include(b => b.Room).OrderByDescending(m => m.booking_id);
+            //return View(await axContext.ToListAsync());
+            return View(await bks.ToListAsync());
+            //return View(axContext.ToPagedList(page ?? 1, 5));
 
-            var booking = await _context.Booking
-                .Include(b => b.Room)
-                .FirstOrDefaultAsync(m => m.booking_id == id);
-            if (booking == null)
-            {
-                return NotFound();
-            }
 
-            return View(booking);
         }
 
         // GET: Bookings/Create

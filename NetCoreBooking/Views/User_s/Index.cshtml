@@ -46,3 +46,45 @@
     </tbody>
 </table>
 
+<div class="card-footer">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            @{
+                int position;
+                int pageCurrent = ViewBag.pageCurrent;
+                string seacrhString = ViewBag.seacrhString;
+                /*float*/int numSize = ViewBag.numSize;
+                if (pageCurrent > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", "User_s", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = pageCurrent-1 })" tabindex="-1">Previous</a>
+                    </li>
+                }
+
+                for (position = 1; position <= numSize; position++)
+                {
+
+                    if (position == pageCurrent)
+                    {
+                        <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "User_s", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = position })">@position</a></li>
+                    }
+
+                    else
+                    {
+                        <li class="page-item"><a class="page-link" href="@Url.Action("Index", "User_s", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = position })">@position</a></li>
+                    }
+
+                }
+                if (pageCurrent > 0 && pageCurrent < numSize)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index", "User_s", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = pageCurrent+1 })" tabindex="-1">Next</a>
+                    </li>
+                }
+
+            }
+
+        </ul>
+    </nav>
+</div>

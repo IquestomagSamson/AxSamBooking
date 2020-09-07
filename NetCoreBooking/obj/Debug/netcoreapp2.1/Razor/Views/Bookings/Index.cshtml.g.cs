@@ -78,7 +78,7 @@ using NetCoreBooking.Models;
             WriteLiteral("<br />\r\n<br />\r\n<button type=\"button\" class=\"btn btn-success\">\r\n    ");
             EndContext();
             BeginContext(804, 70, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "952338745c9f494dbe04c534afb918a8", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2bbbc31f11464858bec1a4299e7aac16", async() => {
                 BeginContext(827, 43, true);
                 WriteLiteral("<span style=\"color:white\">Create New</span>");
                 EndContext();
@@ -103,7 +103,7 @@ using NetCoreBooking.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(1679, 216, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d08856ffc17249c894352e7d75101b16", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e389b26b0d744208ac04c15897cfae7b", async() => {
                 BeginContext(1743, 145, true);
                 WriteLiteral("\r\n        <p>\r\n            Title: <input type=\"text\" name=\"seacrhString\">\r\n            <input type=\"submit\" value=\"Filter\" />\r\n        </p>\r\n    ");
                 EndContext();
@@ -228,7 +228,7 @@ using NetCoreBooking.Models;
             WriteLiteral("\r\n                </td>\r\n\r\n                <td>\r\n\r\n                    ");
             EndContext();
             BeginContext(3209, 61, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "484e0c0bb3e94353b648b4db54cc1001", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "16820491c57f44b78b5cad82bc0946fb", async() => {
                 BeginContext(3262, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -266,7 +266,7 @@ using NetCoreBooking.Models;
             WriteLiteral("                    ");
             EndContext();
             BeginContext(3388, 65, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7159e6e2a0fb4b6d9e3620baa02bfd04", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "52610eb30b5a4528ae53604251899df7", async() => {
                 BeginContext(3443, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

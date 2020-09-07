@@ -20,11 +20,21 @@ namespace NetCoreBooking.Controllers
         }
 
         // GET: User_s
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string seacrhString)
         {
-            return View(await _context.User_s.ToListAsync());
-        }
+            var bks = from m in _context.User_s select m;
 
+            if (!String.IsNullOrEmpty(seacrhString))
+            {
+                bks = bks.Where(s => s.User_name.Contains(seacrhString));
+            }
+            //var axContext = _context.Booking.Include(b => b.Room).OrderByDescending(m => m.booking_id);
+            //return View(await axContext.ToListAsync());
+            return View(await bks.ToListAsync());
+            //return View(axContext.ToPagedList(page ?? 1, 5));
+
+
+        }
         // GET: User_s/Details/5
         public async Task<IActionResult> Details(string id)
         {

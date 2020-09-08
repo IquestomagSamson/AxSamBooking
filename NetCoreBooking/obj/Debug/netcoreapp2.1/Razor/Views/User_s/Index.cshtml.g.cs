@@ -71,7 +71,7 @@ using NetCoreBooking.Models;
             WriteLiteral("<br />\r\n<br />\r\n<button type=\"button\" class=\"btn btn-success\">\r\n    ");
             EndContext();
             BeginContext(206, 86, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a7643c2cea5241b2b087b482e69f612f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3d81746372a149508423fcbbe81aecfa", async() => {
                 BeginContext(229, 59, true);
                 WriteLiteral("<span style=\"font-size:1vw; color:white;\">Create New</span>");
                 EndContext();
@@ -93,7 +93,7 @@ using NetCoreBooking.Models;
             WriteLiteral("\r\n</button>\r\n<br />\r\n<br />\r\n");
             EndContext();
             BeginContext(321, 194, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4a9211d0426e4218a1ff2232c2e7d177", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1611a9618879485aa97a1297a4ac1ea5", async() => {
                 BeginContext(383, 125, true);
                 WriteLiteral("\r\n    <p>\r\n        Title: <input type=\"text\" name=\"seacrhString\">\r\n        <input type=\"submit\" value=\"Filter\" />\r\n    </p>\r\n");
                 EndContext();
@@ -150,7 +150,7 @@ using NetCoreBooking.Models;
             WriteLiteral("\r\n                </td>\r\n\r\n                <td>\r\n                    ");
             EndContext();
             BeginContext(1015, 58, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e89e5ec8f3b44a1da45c75d9cf87040c", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8787da83476e43038b84d0e9ce4e55de", async() => {
                 BeginContext(1065, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -188,7 +188,7 @@ using NetCoreBooking.Models;
             WriteLiteral("                    ");
             EndContext();
             BeginContext(1189, 62, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c55374906c1c496bb8d6326acec6b268", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cae4a34281a94f23aba43d6f94bbb6c2", async() => {
                 BeginContext(1241, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

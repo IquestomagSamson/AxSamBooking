@@ -5,13 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+
+<h3 style="color:coral">Are you sure you want to delete this user?</h3>
 <div>
-    <h4>User_s</h4>
+   
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" style="color:cornflowerblue">
         <dt>
             @Html.DisplayNameFor(model => model.User_name)
         </dt>
@@ -22,7 +22,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="User_id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <input type="submit" value="Delete" class="btn btn-danger" style="font-size:1vw; color: white" /> <br /><br />
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

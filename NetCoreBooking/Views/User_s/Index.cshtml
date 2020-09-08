@@ -4,13 +4,11 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<br />
-<br />
+
 <button type="button" class="btn btn-success">
     <a asp-action="Create"><span style="font-size:1vw; color:white;">Create New</span></a>
 </button>
-<br />
-<br />
+<br /><br />
 <form asp-controller="User_s" asp-action="Index" method="get">
     <p>
         Title: <input type="text" name="seacrhString">
@@ -18,11 +16,13 @@
     </p>
 </form>
 <br />
-<br />
 
 <table class="table table-striped table-hover table-bordered">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User_id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.User_name)
             </th>
@@ -33,6 +33,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User_name)
                 </td>

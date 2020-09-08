@@ -78,7 +78,7 @@ namespace NetCoreBooking.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_id", booking.room_id);
+            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
             return View(booking);
         }
 
@@ -95,7 +95,7 @@ namespace NetCoreBooking.Controllers
             {
                 return NotFound();
             }
-            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_id", booking.room_id);
+            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
             return View(booking);
         }
 
@@ -131,7 +131,7 @@ namespace NetCoreBooking.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_id", booking.room_id);
+            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
             return View(booking);
         }
 

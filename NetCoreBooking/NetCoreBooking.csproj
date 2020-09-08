@@ -16,6 +16,14 @@
     <Content Remove="wwwroot\fonts\fontawesome-webfont.woff" />
     <Content Remove="wwwroot\fonts\fontawesome-webfont.woff2" />
     <Content Remove="wwwroot\fonts\FontAwesome.otf" />
+    <Content Remove="wwwroot\images\5a585ec65db114cc0557c151c7f9067d.jpg" />
+    <Content Remove="wwwroot\images\banner1.svg" />
+    <Content Remove="wwwroot\images\banner2.svg" />
+    <Content Remove="wwwroot\images\banner3.svg" />
+    <Content Remove="wwwroot\images\Banner_Website.jpg" />
+    <Content Remove="wwwroot\images\khung-canh-mua-dong-768x384.jpg" />
+    <Content Remove="wwwroot\images\road_neon_backgound.jpg" />
+    <Content Remove="wwwroot\images\Sketchley-Grange-8570-Lychgate-Suite_1920x1080.jpg" />
     <Content Remove="wwwroot\js\dataTables.bootstrap4.min.js" />
     <Content Remove="wwwroot\js\DataTbale.js" />
     <Content Remove="wwwroot\js\jquery-3.3.1.min.js" />
@@ -37,7 +45,6 @@
     <None Include="wwwroot\fonts\fontawesome-webfont.woff" />
     <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\fonts\FontAwesome.otf" />
-    <None Include="wwwroot\images\road_neon_backgound.jpg" />
     <None Include="wwwroot\js\dataTables.bootstrap4.min.js" />
     <None Include="wwwroot\js\DataTbale.js" />
     <None Include="wwwroot\js\jquery-3.3.1.min.js" />

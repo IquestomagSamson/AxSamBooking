@@ -20,19 +20,37 @@ namespace NetCoreBooking.Controllers
             _context = context;
         }
         public AxContext db = new AxContext();
-
+        public int pageSize = 6;
         // GET: Bookings
-      
-        public async Task<IActionResult> Index(string seacrhString)
+
+        public async Task<IActionResult> Index(string seacrhString, int? page)
         {
             var bks = from m in _context.Booking select m;
-
+      
             if (!String.IsNullOrEmpty(seacrhString))
             {
+                ViewBag.seacrhString = seacrhString;
+
                 bks = bks.Where(s => s.booking_title.Contains(seacrhString));
             }
-            //var axContext = _context.Booking.Include(b => b.Room).OrderByDescending(m => m.booking_id);
-            //return View(await axContext.ToListAsync());
+            if (page > 0)
+            {
+                page = page;
+            }
+            else
+            {
+                page = 1;
+            }
+
+            int start = (int)(page - 1) * pageSize;
+            
+            ViewBag.pageCurrent = page;
+            int totalPage = bks.Count();
+            float totalNumsize = (totalPage / (float)pageSize);
+            int numSize = (int)Math.Ceiling(totalNumsize);
+            ViewBag.numSize = numSize;
+            ViewBag.posts = bks.OrderByDescending(x => x.booking_id).Skip(start).Take(pageSize);
+            ViewBag.data = bks;
             return View(await bks.ToListAsync());
             //return View(axContext.ToPagedList(page ?? 1, 5));
 
@@ -42,7 +60,8 @@ namespace NetCoreBooking.Controllers
         // GET: Bookings/Create
         public IActionResult Create()
         {
-            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_id");
+            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name");
+            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "users_id", "users_name");
             return View();
         }
 

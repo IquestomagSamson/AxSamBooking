@@ -16,10 +16,12 @@ namespace Booking_Room.Models
 
         [Key]
         [StringLength(10)]
+        [Display(Name ="User ID")]
         public string User_id { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "User name")]
         public string User_name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

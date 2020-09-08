@@ -11,19 +11,12 @@
 @*<link href="C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\assets\css\table_bs.css" rel="stylesheet" />
     <link href="C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\assets\css\Boostrap_page.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">*@
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            "pagingType": "full_numbers"
-        });
-    });
-</script>
 
 @*<div class="container-xl">*@
 <br />
 <br />
 <button type="button" class="btn btn-success">
-    <a asp-action="Create"><span style="color:white">Create New</span></a>
+    <a asp-action="Create"><span style="font-size:1vw; color:white;" >Create New</span></a>
 </button>
 <br />
 <br />
@@ -46,66 +39,109 @@
             </div>*@
 
 <form asp-controller="Bookings" asp-action="Index" method="get">
-        <p>
-            Title: <input type="text" name="seacrhString">
-            <input type="submit" value="Filter" />
-        </p>
-    </form>
+    <p>
+        Title: <input type="text" name="seacrhString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
-<table id="example" class="table table-striped table-bordered display" style="width:100%">
-    <thead>
-        <tr>
 
-            <th>Booking title</i></th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Participants</th>
-            <th>Note</th>
-            <th>Room ID</th>
-            <th>User ID</th>
-            <th></th>
+<div class="table-responsive">
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table table-striped table-bordered display" style="width:100%">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.booking_title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.start_time)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.end_time)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.participants)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.note)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.room_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.users_id)
-                </td>
 
-                <td>
+                <th>Booking title</i></th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Participants</th>
+                <th>Note</th>
+                <th>Room ID</th>
+                <th>User ID</th>
+                <th></th>
 
-                    <a asp-action="Edit" asp-route-id="@item.booking_id">Edit</a> |
-                    @*<a asp-action="Details" asp-route-id="@item.booking_id">Detail</a> |*@
-                    <a asp-action="Delete" asp-route-id="@item.booking_id">Delete</a>
-                </td>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.booking_title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.start_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.end_time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.participants)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.note)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.room_id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.users_id)
+                    </td>
 
-    </tbody>
-</table>
-<br />
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.booking_id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.booking_id">Delete</a>
+                    </td>
+                </tr>
+            }
 
-@*</div>
-        </div>
-    </div>*@
+        </tbody>
+    </table>
+
+
+    <div class="card-footer">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+                @{
+                    int position;
+                    int pageCurrent = ViewBag.pageCurrent;
+                    string seacrhString = ViewBag.seacrhString;
+                    /*float*/
+                    int numSize = ViewBag.numSize;
+                    if (pageCurrent > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = pageCurrent-1 })" tabindex="-1">Previous</a>
+                        </li>
+                    }
+
+                    for (position = 1; position <= numSize; position++)
+                    {
+
+                        if (position == pageCurrent)
+                        {
+                            <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = position })">@position</a></li>
+                        }
+
+                        else
+                        {
+                            <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = position })">@position</a></li>
+                        }
+
+                    }
+                    if (pageCurrent > 0 && pageCurrent < numSize)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = pageCurrent+1 })" tabindex="-1">Next</a>
+                        </li>
+                    }
+
+                }
+
+            </ul>
+        </nav>
+    </div>
+    <br />
+</div>

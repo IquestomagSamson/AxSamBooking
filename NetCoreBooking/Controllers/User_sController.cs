@@ -111,6 +111,8 @@ namespace NetCoreBooking.Controllers
         //    }
         //    return View(obj);
         //}
+
+
         // GET: User_s/Details/5
         public async Task<IActionResult> Details(string id)
         {

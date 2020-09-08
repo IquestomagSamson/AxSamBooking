@@ -7,7 +7,7 @@
 <br />
 <br />
 <button type="button" class="btn btn-success">
-    <a asp-action="Create"><span style="color:white">Create New</span></a>
+    <a asp-action="Create"><span style="font-size:1vw; color:white;">Create New</span></a>
 </button>
 <br />
 <br />
@@ -17,6 +17,8 @@
         <input type="submit" value="Filter" />
     </p>
 </form>
+<br />
+<br />
 
 <table class="table table-striped table-hover table-bordered">
     <thead>
@@ -54,7 +56,8 @@
                 int position;
                 int pageCurrent = ViewBag.pageCurrent;
                 string seacrhString = ViewBag.seacrhString;
-                /*float*/int numSize = ViewBag.numSize;
+                /*float*/
+                int numSize = ViewBag.numSize;
                 if (pageCurrent > 1)
                 {
                     <li class="page-item">

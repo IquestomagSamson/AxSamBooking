@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Booking_Room.Models;
 using PagedList;
 using NetCoreBooking.Data;
+using NetCoreBooking_PagedList;
 
 namespace NetCoreBooking.Controllers
 {
@@ -23,38 +24,72 @@ namespace NetCoreBooking.Controllers
         public int pageSize = 6;
         // GET: Bookings
 
-        public async Task<IActionResult> Index(string seacrhString, int? page)
-        {
-            var bks = from m in _context.Booking select m;
-      
-            if (!String.IsNullOrEmpty(seacrhString))
-            {
-                ViewBag.seacrhString = seacrhString;
+        //public async Task<IActionResult> Index(string seacrhString, int? page)
+        //{
+        //    var bks = from m in _context.Booking select m;
 
-                bks = bks.Where(s => s.booking_title.Contains(seacrhString));
-            }
-            if (page > 0)
+        //    if (!String.IsNullOrEmpty(seacrhString))
+        //    {
+        //        ViewBag.seacrhString = seacrhString;
+
+        //        bks = bks.Where(s => s.booking_title.Contains(seacrhString));
+        //    }
+        //    if (page > 0)
+        //    {
+        //        page = page;
+        //    }
+        //    else
+        //    {
+        //        page = 1;
+        //    }
+
+        //    int start = (int)(page - 1) * pageSize;
+
+        //    ViewBag.pageCurrent = page;
+        //    int totalPage = bks.Count();
+        //    float totalNumsize = (totalPage / (float)pageSize);
+        //    int numSize = (int)Math.Ceiling(totalNumsize);
+        //    ViewBag.numSize = numSize;
+        //    ViewBag.posts = bks.OrderByDescending(x => x.booking_id).Skip(start).Take(pageSize);
+        //    ViewBag.data = bks;
+        //    return View(await bks.ToListAsync());
+        //    //return View(axContext.ToPagedList(page ?? 1, 5));
+
+
+        //}
+
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
+        {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            
+
+            if (searchString != null)
             {
-                page = page;
+                pageNumber = 1;
             }
             else
             {
-                page = 1;
+                searchString = currentFilter;
             }
 
-            int start = (int)(page - 1) * pageSize;
-            
-            ViewBag.pageCurrent = page;
-            int totalPage = bks.Count();
-            float totalNumsize = (totalPage / (float)pageSize);
-            int numSize = (int)Math.Ceiling(totalNumsize);
-            ViewBag.numSize = numSize;
-            ViewBag.posts = bks.OrderByDescending(x => x.booking_id).Skip(start).Take(pageSize);
-            ViewBag.data = bks;
-            return View(await bks.ToListAsync());
-            //return View(axContext.ToPagedList(page ?? 1, 5));
+            ViewData["CurrentFilter"] = searchString;
+
+            var booking = from s in _context.Booking
+                         select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                booking = booking.Where(s => s.booking_title.Contains(searchString) || s.participants.Contains(searchString)|| s.note.Contains(searchString));
+            }
+            booking = booking.OrderByDescending(s => s.booking_id);
 
 
+            int pageSize = 5;
+            return View(await PaginatedList<Booking>.CreateAsync(booking.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Bookings/Create

@@ -102,18 +102,69 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    @Html.Raw("@")import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 40%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+</style>
 
 <p>
     <a asp-action="Create" class="btn btn-info" style="font-size:1vw; color:white">Create</a>
 </p>
+
 <br />
 <form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-success" style="font-size:1vw; color:white"/>             
-        </p>
+    @*<div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Search here..." />
+                <input type="submit" value="Search" class="btn btn-success" style="font-size:1vw; color:white" />
+            </p>
+        </div>*@
+
+
+    <div class="form-actions no-color d-flex d-inline-block">
+        <input type="text" class="searchTerm" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="What are you looking for?">
+        <button type="submit" class="searchButton" value="Search">
+            <i class="fa fa-search"></i>
+        </button>
     </div>
 </form>
 <br />
@@ -123,7 +174,7 @@
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">User ID</a>
             </th>
-            
+
             <th>
                 <a asp-action="Index" asp-route-currentFilter="@ViewData["CurrentFilter"]">User name</a>
             </th>
@@ -172,3 +223,5 @@
 <br />
 <br />
 <a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Back to Full List</a>
+<br />
+<br />

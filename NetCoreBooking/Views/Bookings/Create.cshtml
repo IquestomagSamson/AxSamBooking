@@ -4,54 +4,68 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 <style>
-    .txtdeepshadow {
-        text-align: center;
-        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    #title {
+        /*position: absolute;*/
+        top: 50%;
+        left: 0;
+        right: 0;
+        color: #FFF;
+        text-align: left;
+        font-family: "lato", sans-serif;
+        font-weight: 300;
         font-size: 50px;
-        height: 100px;
-        padding-top: 40px;
-        color: #131010;
-        background-color: #fff;
-        letter-spacing: .1em;
-        text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0, 0, 0, 0.9);
+        letter-spacing: 10px;
+        margin-top: -60px;
+        padding-left: 100px;
     }
-</style>
-<h2 class="txtdeepshadow">Create</h2>
 
-<hr />
+        #title span {
+            background: -webkit-linear-gradient(white, #38495a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+</style>
+
+<br />
+<br />
+
+
 <div class="row">
+
     <div class="col-md-4">
+        <div id="title"><span>Create</span></div>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="booking_id" class="control-label"></label>
-                <input asp-for="booking_id" class="form-control" placeholder="Input your booking ID...." style="font-size:1vw;"/>
-                <span asp-validation-for="booking_id" class="text-danger" ></span>
+                <input asp-for="booking_id" class="form-control" placeholder="Input your booking ID...." style="font-size:1vw;" />
+                <span asp-validation-for="booking_id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="booking_title" class="control-label"></label>
-                <input asp-for="booking_title" class="form-control" placeholder="Input your booking title...." style="font-size:1vw"/>
+                <input asp-for="booking_title" class="form-control" placeholder="Input your booking title...." style="font-size:1vw" />
                 <span asp-validation-for="booking_title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="start_time" class="control-label"></label>
-                <input asp-for="start_time" class="form-control" style="font-size:1vw"/>
+                <input asp-for="start_time" class="form-control" style="font-size:1vw" />
                 <span asp-validation-for="start_time" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="end_time" class="control-label"></label>
-                <input asp-for="end_time" class="form-control" style="font-size:1vw"/>
+                <input asp-for="end_time" class="form-control" style="font-size:1vw" />
                 <span asp-validation-for="end_time" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="participants" class="control-label"></label>
-                <input asp-for="participants" class="form-control"  placeholder="Note some participants...." style="font-size:1vw" />
+                <input asp-for="participants" class="form-control" placeholder="Note some participants...." style="font-size:1vw" />
                 <span asp-validation-for="participants" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="note" class="control-label"></label>
-                <input asp-for="note" class="form-control"  placeholder="Note something about the meeting...." style="font-size:1vw"/>
+                <input asp-for="note" class="form-control" placeholder="Note something about the meeting...." style="font-size:1vw" />
                 <span asp-validation-for="note" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,8 +74,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="users_id" class="control-label"></label>
-                <input asp-for="users_id" class="form-control" placeholder="Type user who creat the meeting...." style="font-size:1vw"/>
-                
+                <input asp-for="users_id" class="form-control" placeholder="Type user who creat the meeting...." style="font-size:1vw" />
+
                 <span asp-validation-for="users_id" class="text-danger"></span>
             </div>
             <div class="form-group">

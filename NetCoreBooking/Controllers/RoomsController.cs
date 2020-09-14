@@ -14,61 +14,24 @@ namespace NetCoreBooking.Controllers
     public class RoomsController : Controller
     {
         private readonly AxContext _context;
-
+        //Read comment in Booking controller and UserController
+        
         public RoomsController(AxContext context)
         {
             _context = context;
         }
-        public int pageSize = 6;
-        // GET: Rooms
-        //public async Task<IActionResult> Index(string seacrhString, int? page)
-        //{
-        //    var bks = from m in _context.Room select m;
-        //    if (!String.IsNullOrEmpty(seacrhString))
-        //    {
-        //        ViewBag.seacrhString = seacrhString;
-
-        //        bks = bks.Where(s => s.room_name.Contains(seacrhString));
-        //    }
-        //    if (page > 0)
-        //    {
-        //        page = page;
-        //    }
-        //    else
-        //    {
-        //        page = 1;
-        //    }
-
-        //    int start = (int)(page - 1) * pageSize;
-
-        //    ViewBag.pageCurrent = page;
-        //    int totalPage = bks.Count();
-        //    float totalNumsize = (totalPage / (float)pageSize);
-        //    int numSize = (int)Math.Ceiling(totalNumsize);
-        //    ViewBag.numSize = numSize;           
-        //    ViewBag.posts = bks.OrderByDescending(x => x.room_id).Skip(start).Take(pageSize);
-        //    //var axContext = _context.Booking.Include(b => b.Room).OrderByDescending(m => m.booking_id);
-        //    //return View(await axContext.ToListAsync());
-        //    return View(await bks.ToListAsync());
-        //    //return View(axContext.ToPagedList(page ?? 1, 5));
-
-
-        //}
-
-            public async Task<IActionResult> Index(
-            string sortOrder,
-            string currentFilter,
-            string searchString,
-            int? pageNumber)
+      
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-
-
+            //Nếu chuỗi truyền vào mà không rỗng thì pageNumber bằng 1
             if (searchString != null)
             {
                 pageNumber = 1;
             }
+            ///
+            //Ngược lại thì searchString bằng currentFilter
             else
             {
                 searchString = currentFilter;
@@ -77,13 +40,12 @@ namespace NetCoreBooking.Controllers
             ViewData["CurrentFilter"] = searchString;
 
             var room = from s in _context.Room
-                          select s;
+                       select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 room = room.Where(s => s.room_name.Contains(searchString));
             }
             room = room.OrderByDescending(s => s.room_id);
-
 
             int pageSize = 5;
             return View(await PaginatedList<Room>.CreateAsync(room.AsNoTracking(), pageNumber ?? 1, pageSize));
@@ -115,13 +77,12 @@ namespace NetCoreBooking.Controllers
         }
 
         // POST: Rooms/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("room_id,room_name,capacity")] Room room)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //ModelState.IsValid: mang giá trị false khi 1 (false) thuộc tính nào đó mang giá trị không hợp lệ.
             {
                 _context.Add(room);
                 await _context.SaveChangesAsync();

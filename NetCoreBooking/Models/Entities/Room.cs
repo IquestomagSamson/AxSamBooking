@@ -1,4 +1,4 @@
-namespace Booking_Room.Models
+﻿namespace Booking_Room.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,16 +16,19 @@ namespace Booking_Room.Models
         }
 
         [Key]
+        [Required(ErrorMessage = "Hãy nhập mã phòng họp.")]
         [StringLength(10)]
-        [Display(Name = "Room ID")]
+        [Display(Name = "Mã phòng họp")]
         public string room_id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập tên phòng họp.")]
         [StringLength(50)]
-        [Display(Name = "Room name")]
+        [Display(Name = "Tên phòng họp")]
         public string room_name { get; set; }
 
-        [Display(Name = "Capacity")]
+
+        [Required(ErrorMessage = "Hãy nhập số người tối đa có thể chưa trong phòng họp.")]
+        [Display(Name = "Sức chứa của phòng")]
         public int capacity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

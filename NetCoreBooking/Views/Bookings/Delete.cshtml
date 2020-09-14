@@ -7,7 +7,7 @@
 
 
 
-<h4 style="color:coral">Are you sure you want to delete this booking?</h4>
+<h4 style="color:coral">Bạn có thực sự muốn xóa lịch booking cuộc họp này không?</h4>
 <div>
 
     <hr />
@@ -52,16 +52,16 @@
             @Html.DisplayNameFor(model => model.Room)
         </dt>
         <dd style="color:cornflowerblue">
-            @Html.DisplayFor(model => model.Room.room_id)
+            @Html.DisplayFor(model => model.room_id)
         </dd>
     </dl>
 
     <form asp-action="Delete">
         <input type="hidden" asp-for="booking_id" />
-        <input type="submit" value="Delete" class="btn btn-danger" style="font-size:1vw; color:white" />
+        <input type="submit" value="Xóa" class="btn btn-danger" style="font-size:1vw; color:white" />
         <br /><br />
 
-        <a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Back to Full List</a>
+        <a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Trở về trang danh sách</a>
     </form>
 </div>
 <br />

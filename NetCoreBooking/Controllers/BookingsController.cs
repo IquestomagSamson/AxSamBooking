@@ -20,134 +20,106 @@ namespace NetCoreBooking.Controllers
         {
             _context = context;
         }
+        //Tạo mới một context
         public AxContext db = new AxContext();
-        public int pageSize = 6;
-        // GET: Bookings
-
-        //public async Task<IActionResult> Index(string seacrhString, int? page)
-        //{
-        //    var bks = from m in _context.Booking select m;
-
-        //    if (!String.IsNullOrEmpty(seacrhString))
-        //    {
-        //        ViewBag.seacrhString = seacrhString;
-
-        //        bks = bks.Where(s => s.booking_title.Contains(seacrhString));
-        //    }
-        //    if (page > 0)
-        //    {
-        //        page = page;
-        //    }
-        //    else
-        //    {
-        //        page = 1;
-        //    }
-
-        //    int start = (int)(page - 1) * pageSize;
-
-        //    ViewBag.pageCurrent = page;
-        //    int totalPage = bks.Count();
-        //    float totalNumsize = (totalPage / (float)pageSize);
-        //    int numSize = (int)Math.Ceiling(totalNumsize);
-        //    ViewBag.numSize = numSize;
-        //    ViewBag.posts = bks.OrderByDescending(x => x.booking_id).Skip(start).Take(pageSize);
-        //    ViewBag.data = bks;
-        //    return View(await bks.ToListAsync());
-        //    //return View(axContext.ToPagedList(page ?? 1, 5));
-
-
-        //}
-
-        public async Task<IActionResult> Index(
-            string sortOrder,
-            string currentFilter,
-            string searchString,
-            int? pageNumber)
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             
-
+            //Nếu chuỗi tìm kiếm được truyền vào khồng rỗng thì trả về page đầu tiên
             if (searchString != null)
             {
                 pageNumber = 1;
             }
+            // Ngược lại không trả về danh sách nào
             else
             {
                 searchString = currentFilter;
             }
-
+            //Trả về  CurrentFilter có giá trị là chuỗi searchString
             ViewData["CurrentFilter"] = searchString;
-
+            //Select dữ liệu 
             var booking = from s in _context.Booking
                          select s;
+            //Nếu search không rỗng hoặc null thì tìm các bản ghi có chứa searchString
             if (!String.IsNullOrEmpty(searchString))
             {
                 booking = booking.Where(s => s.booking_title.Contains(searchString) || s.participants.Contains(searchString)|| s.note.Contains(searchString));
             }
+            //Sắp xếp lại theo id của lịch booking phòng họp
             booking = booking.OrderByDescending(s => s.booking_id);
-
-
+            //Set số lượng bản ghi hiện lên mỗi page là 5
             int pageSize = 5;
+            //Trả về View
             return View(await PaginatedList<Booking>.CreateAsync(booking.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Bookings/Create
         public IActionResult Create()
         {
+            //Tạo các Viewdata (data dictionary) để hiển thị danh sách dữ liệu
             ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name");
-            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "users_id", "users_name");
+            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name");
             return View();
         }
 
         // POST: Bookings/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //Hỗ trợ chống giả mạo của MVC ghi một giá trị duy nhất vào cookie chỉ có HTTP và sau đó cùng một giá trị được ghi vào biểu mẫu.
+        //Khi trang được gửi, một lỗi sẽ xuất hiện nếu giá trị cookie không khớp với giá trị biểu mẫu. 
         public async Task<IActionResult> Create([Bind("booking_id,booking_title,start_time,end_time,participants,note,room_id,users_id")] Booking booking)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //ModelState.IsValid: mang giá trị false khi 1 (false) thuộc tính nào đó mang giá trị không hợp lệ.
             {
                 _context.Add(booking);
                 await _context.SaveChangesAsync();
+                //Redirect về trang index sau khi tạo xong
                 return RedirectToAction(nameof(Index));
             }
             ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
+            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name", booking.users_id);
             return View(booking);
         }
 
         // GET: Bookings/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
+            //Trả về null khi giá trị muốn edit không tồn tại
             if (id == null)
             {
                 return NotFound();
             }
-
+            //Tìm kiếm một booking có mã là id
             var booking = await _context.Booking.FindAsync(id);
+            // Nếu không tồn tại thì không trả về dữ liệu nào
             if (booking == null)
             {
                 return NotFound();
             }
             ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
+            //---------------------------------------------------------------------------------------------------------------
+            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name", booking.users_id);
             return View(booking);
         }
 
         // POST: Bookings/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("booking_id,booking_title,start_time,end_time,participants,note,room_id,users_id")] Booking booking)
         {
+            //Nếu mã không tồn tại thì không thể sửa (Xảy ra khi thực hiện truyền trực tiếp trên link
             if (id != booking.booking_id)
             {
                 return NotFound();
             }
-
+            // Nếu tồn tại ID ở trên thì thực hiện sửa Booking có ID được truyền vào
             if (ModelState.IsValid)
             {
+                // Thực hiện try sửa một booking bằng việc check các trường đi kèm
                 try
                 {
                     _context.Update(booking);
@@ -155,6 +127,7 @@ namespace NetCoreBooking.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    //Nếu không tồn tại một booking nào có mã booking id thì sẽ không trả về dữ liệu
                     if (!BookingExists(booking.booking_id))
                     {
                         return NotFound();
@@ -164,23 +137,29 @@ namespace NetCoreBooking.Controllers
                         throw;
                     }
                 }
+                //Redirect đến trang index sau khi thực hiện xong tác vụ
                 return RedirectToAction(nameof(Index));
             }
             ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
+            //---------------------------------------------------------------------------------------------------------------
+            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name", booking.users_id);
             return View(booking);
         }
 
         // GET: Bookings/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
+           
+            //Nếu id truyền vào mà không tồn tại thì không trả về dữ liệu
             if (id == null)
             {
                 return NotFound();
             }
 
             var booking = await _context.Booking
-                .Include(b => b.Room)
+                //.Include(b => b.Room)
                 .FirstOrDefaultAsync(m => m.booking_id == id);
+            //Nếu booking null thì không trẩ về dữ liệu
             if (booking == null)
             {
                 return NotFound();
@@ -199,9 +178,10 @@ namespace NetCoreBooking.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        //Xác định khi nào bất kỳ phần tử nào trong tập dữ liệu thỏa mãn yêu cầu nào đó.
         private bool BookingExists(string id)
         {
+            //Xác định khi nào bất kỳ phần tử nào trong tập dữ liệu thỏa mãn yêu cầu nào đó.
             return _context.Booking.Any(e => e.booking_id == id);
         }
     }

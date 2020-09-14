@@ -1,138 +1,6 @@
-﻿@*@model IEnumerable<Booking_Room.Models.Booking>
-
-
-    @{
-        ViewData["Title"] = "Index";
-        ViewBag.Title = "Booking";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-
-
-
-
-    <button type="button" class="btn btn-success">
-        <a asp-action="Create"><span style="font-size:1vw; color:white;" >Create New</span></a>
-    </button>
-    <br />
-    <br />
-
-
-    <form asp-controller="Bookings" asp-action="Index" method="get">
-        <p>
-            Title: <input type="text" name="seacrhString">
-            <input type="submit" value="Filter" />
-        </p>
-    </form>
-
-
-    <div class="table-responsive">
-
-        <table class="table table-striped table-bordered display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Booking title</i></th>
-                    <th>Start time</th>
-                    <th>End time</th>
-                    <th>Participants</th>
-                    <th>Note</th>
-                    <th>Room ID</th>
-                    <th>User ID</th>
-                    <th></th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.booking_id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.booking_title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.start_time)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.end_time)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.participants)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.note)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.room_id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.users_id)
-                    </td>
-
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.booking_id">Edit</a> |
-                        <a asp-action="Delete" asp-route-id="@item.booking_id">Delete</a>
-                    </td>
-                </tr>
-                }
-
-            </tbody>
-        </table>
-
-
-        <div class="card-footer">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-
-                    @{
-                        int position;
-                        int pageCurrent = ViewBag.pageCurrent;
-                        string seacrhString = ViewBag.seacrhString;
-
-                        int numSize = ViewBag.numSize;
-                        if (pageCurrent > 1)
-                        {
-                            <li class="page-item">
-                                <a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = pageCurrent-1 })" tabindex="-1">Previous</a>
-                            </li>
-                        }
-
-                        for (position = 1; position <= numSize; position++)
-                        {
-
-                            if (position == pageCurrent)
-                            {
-                                <li class="page-item active"><a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = position })">@position</a></li>
-                            }
-
-                            else
-                            {
-                                <li class="page-item"><a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = position })">@position</a></li>
-                            }
-
-                        }
-                        if (pageCurrent > 0 && pageCurrent < numSize)
-                        {
-                            <li class="page-item">
-                                <a class="page-link" href="@Url.Action("Index", "Bookings", new { seacrhString = (seacrhString != "" ? seacrhString : null), page = pageCurrent+1 })" tabindex="-1">Next</a>
-                            </li>
-                        }
-
-                    }
-
-                </ul>
-            </nav>
-        </div>
-        <br />
-    </div>*@
-
-@*--------------------------------------------------------------------------------------------------------------*@
-
-@using NetCoreBooking_PagedList;
+﻿@using NetCoreBooking_PagedList;
 @model PaginatedList<Booking_Room.Models.Booking>
-
+@using PagedList.Mvc;
 @{
     ViewData["Title"] = "Index";
 }
@@ -181,43 +49,32 @@ body{
 
 </style>
 <p>
-    <a asp-action="Create"  class="btn btn-info" style="font-size:1vw; color:white">Create</a>
+    <a asp-action="Create" class="btn btn-info" style="font-size:1vw; color:white">Tạo mới</a>
 </p>
 <br />
 <form asp-action="Index" method="get">
-    @*<div class="form-actions no-color">
-            <p>
-                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Search here..."/>
-                <input type="submit" value="Search" class="btn btn-success" style="font-size:1vw; color:white" />
 
-            </p>
-        </div>*@
     <div class="form-actions no-color d-flex d-inline-block">
-        <input type="text" class="searchTerm" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="What are you looking for?">
+        <input type="text" class="searchTerm" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Bạn muốn tìm thông tin gì...?">
         <button type="submit" class="searchButton" value="Search">
             <i class="fa fa-search"></i>
         </button>
     </div>
 </form>
 <br />
-<table @*class="table"*@ class="table table-striped table-bordered display" style="width:100%">
+<table class="table table-striped table-bordered display" style="width:100%">
     <thead>
         <tr>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Boooking ID</a>
-            </th>
-            <th>Booking title</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Participants</th>
-            <th>Note</th>
-            <th>Room ID</th>
-            <th>User ID</th>
-            <th></th>
-            @*<th>
-                <a asp-action="Index" asp-route-currentFilter="@ViewData["CurrentFilter"]">Enrollment Date</a>
-            </th>
-            <th></th>*@
+            <th style="text-align:center"><a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Mã lịch đặt phòng</a></th>
+            <th style="text-align:center">Tiêu đề cuộc họp</th>
+            <th style="text-align:center">Thời gian bắt đầu</th>
+            <th style="text-align:center">Thời gian kết thúc</th>
+
+            <th style="text-align:center">Thành phần tham dự</thstyle="text-align:center">
+            <th style="text-align:center">Ghi chú</th>
+            <th style="text-align:center">Mã phòng họp</th>
+            <th style="text-align:center">Người đặt phòng</th>
+            <th style="text-align:center">Tùy chọn</th>
         </tr>
     </thead>
     <tbody>
@@ -263,21 +120,38 @@ body{
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a asp-action="Index"
+@*<a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    style="font-size:1vw;" class="btn btn-outline-info @prevDisabled">
-    Previous
+    Trước
 </a>
+
+
+
+
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-outline-info @nextDisabled" style="font-size:1vw;">
-    Next
-</a>
-
-<br /><br /><a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Back to Full List</a>
+    Sau
+</a>*@
+@{ 
+    int i;
+    for (i = 1; i <= Model.TotalPages; i++)
+    {
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber=@i
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-outline-info" style="font-size:1vw;">
+        @(i)
+    </a>
+    }
+}
+<br />
+<br /><a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Quay về trang danh sách</a>
 <br />
 <br />

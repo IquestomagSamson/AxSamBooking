@@ -1,4 +1,4 @@
-namespace Booking_Room.Models
+﻿namespace Booking_Room.Models
 {
     using System;
     using System.Collections.Generic;
@@ -9,39 +9,42 @@ namespace Booking_Room.Models
     public partial class Booking
     {
         [Key]
+        [Required(ErrorMessage = "Hãy nhập mã lịch booking phòng họp.")]
         [StringLength(10)]
-        [Display(Name = "Booking ID")]
+        [Display(Name = "Mã cuộc họp")]
         public string booking_id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập tiêu đề cuộc họp.")]
         [StringLength(100)]
-        [Display(Name = "Booking title")]
+        [Display(Name = "Tiêu đề cuộc họp.")]
         public string booking_title { get; set; }
 
+        [Required(ErrorMessage = "Hãy nhập thời gian bắt đầu cuộc họp.")]
         [Column(TypeName = "smalldatetime")]
-        [Display(Name = "Start time")]
+        [Display(Name = "Thời gian bắt đầu cuộc họp.")]
         public DateTime start_time { get; set; }
 
+        [Required(ErrorMessage = "Hãy nhập thời gian kết thúc cuộc họp.")]
         [Column(TypeName = "smalldatetime")]
-        [Display(Name = "End time")]
+        [Display(Name = "Thời gian kết thúc cuộc họp.")]
         public DateTime end_time { get; set; }
 
         [StringLength(1000)]
-        [Display(Name = "Participants")]
+        [Display(Name = "Những người tham gia")]
         public string participants { get; set; }
 
         [StringLength(1000)]
-        [Display(Name = "Note")]
+        [Display(Name = "Ghi chú")]
         public string note { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập tên phòng họp.")]
         [StringLength(10)]
-        [Display(Name = "Room ID")]
+        [Display(Name = "Tên phòng họp")]
         public string room_id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập tên người đặt phòng họp phòng họp.")]
         [StringLength(10)]
-        [Display(Name = "User ID")]
+        [Display(Name = "Tên người đặt phòng họp")]
         public string users_id { get; set; }
 
         public virtual Room Room { get; set; }

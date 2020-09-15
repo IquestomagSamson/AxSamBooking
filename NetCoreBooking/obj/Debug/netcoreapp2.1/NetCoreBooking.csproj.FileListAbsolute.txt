@@ -49,5 +49,6 @@ C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreap
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Rooms\Details.cshtml.g.cs
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Rooms\Edit.cshtml.g.cs
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Rooms\Index.cshtml.g.cs
+C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_NotificationPanel.cshtml.g.cs
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.csproj.CoreCompileInputs.cache
 C:\Users\Huy\Desktop\Ky_9\TTCN\NetCoreBooking\NetCoreBooking\obj\Debug\netcoreapp2.1\NetCoreBooking.csprojAssemblyReference.cache

@@ -1,0 +1,46 @@
+﻿@using NetCoreBooking.Models;
+@if (TempData["notification"] != null)
+{
+
+    @*@Html.Raw(TempData["notification"]);*@
+    <div class="alert @TempData["NotificationCSS"]">@TempData["notification3"]</div>
+   
+}
+
+
+
+<script>
+
+    $(document).ready(function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "positionClass": "toast-bottom-right",
+            "onclick": null,
+            "showDuration": "1000",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        $('#toastr-success').click(function () {
+            toastr.success('This is a success notification from toastr.')
+        });
+
+        $('#toastr-info').click(function () {
+            toastr.info('This is an information notification provided by toastr.')
+        });
+
+        $('#toastr-warning').click(function () {
+            toastr.warning('This is a warning notification provided by toastr.')
+        });
+
+        $('#toastr-error').click(function () {
+            toastr.error('This is an error notification provided by toastr.')
+        });
+    });
+</script>
+

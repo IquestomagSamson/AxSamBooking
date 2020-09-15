@@ -12,10 +12,10 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.IdentityModel.Protocols;
 using NetCoreBooking_PagedList;
-
+using static NetCoreBooking.Enums.Enums;
 namespace NetCoreBooking.Controllers
 {
-    public class User_sController : Controller
+    public class User_sController : BaseNotification
     {
         private readonly AxContext _context;
 
@@ -96,9 +96,23 @@ namespace NetCoreBooking.Controllers
         {
             if (ModelState.IsValid)//ModelState.IsValid: mang giá trị false khi 1 (false) thuộc tính nào đó mang giá trị không hợp lệ.
             {
-                _context.Add(user_s);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    _context.Add(user_s);
+                    await _context.SaveChangesAsync();
+                    Alert("Tạo mới người dùng thành công", NotificationType.success);
+                    Message("Tạo mới người dùng thành công", NotificationType.success);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    Alert("Tạo mới lịch thất bại", NotificationType.error);
+                    Message("Tạo mới lịch không thành công", NotificationType.error);
+                    return RedirectToAction(nameof(Index));
+                }
+                //_context.Add(user_s);
+                //await _context.SaveChangesAsync();
+                //return RedirectToAction(nameof(Index));
             }
             return View(user_s);
         }
@@ -136,6 +150,8 @@ namespace NetCoreBooking.Controllers
                 try
                 {
                     _context.Update(user_s);
+                    Alert("Sửa người dùng thành công", NotificationType.success);
+                    Message("Sửa người dùng thành công", NotificationType.success);
                     await _context.SaveChangesAsync();
                 }
                 // Nếu không hợp lện thì kiểm tra sai và ném ra lỗi
@@ -143,6 +159,8 @@ namespace NetCoreBooking.Controllers
                 {
                     if (!User_sExists(user_s.User_id))
                     {
+                        Alert("Sửa người dùng thất bại", NotificationType.error);
+                        Message("Sửa người dùng không thành công", NotificationType.error);
                         return NotFound();
                     }
                     else
@@ -181,9 +199,24 @@ namespace NetCoreBooking.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var user_s = await _context.User_s.FindAsync(id);
-            _context.User_s.Remove(user_s);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            try
+            {
+                _context.User_s.Remove(user_s);
+                await _context.SaveChangesAsync();
+                Alert("Xóa người dùng thành công", NotificationType.success);
+                Message("Xóa người dùng thành công", NotificationType.success);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                Alert("Xóa người dùng thất bại", NotificationType.error);
+                Message("Xóa người dùng không thành công", NotificationType.error);
+                return RedirectToAction(nameof(Index));
+            }
+            //_context.User_s.Remove(user_s);
+            //await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
         }
         // Tìm những người dùng có id là id được truyền vào
         private bool User_sExists(string id)

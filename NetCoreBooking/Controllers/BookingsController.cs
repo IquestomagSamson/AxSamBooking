@@ -9,10 +9,12 @@ using Booking_Room.Models;
 using PagedList;
 using NetCoreBooking.Data;
 using NetCoreBooking_PagedList;
+using static NetCoreBooking.Enums.Enums;
+
 
 namespace NetCoreBooking.Controllers
 {
-    public class BookingsController : Controller
+    public class BookingsController : BaseNotification
     {
         private readonly AxContext _context;
 
@@ -26,7 +28,7 @@ namespace NetCoreBooking.Controllers
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            
+
             //Nếu chuỗi tìm kiếm được truyền vào khồng rỗng thì trả về page đầu tiên
             if (searchString != null)
             {
@@ -41,11 +43,11 @@ namespace NetCoreBooking.Controllers
             ViewData["CurrentFilter"] = searchString;
             //Select dữ liệu 
             var booking = from s in _context.Booking
-                         select s;
+                          select s;
             //Nếu search không rỗng hoặc null thì tìm các bản ghi có chứa searchString
             if (!String.IsNullOrEmpty(searchString))
             {
-                booking = booking.Where(s => s.booking_title.Contains(searchString) || s.participants.Contains(searchString)|| s.note.Contains(searchString));
+                booking = booking.Where(s => s.booking_title.Contains(searchString) || s.participants.Contains(searchString) || s.note.Contains(searchString));
             }
             //Sắp xếp lại theo id của lịch booking phòng họp
             booking = booking.OrderByDescending(s => s.booking_id);
@@ -65,7 +67,7 @@ namespace NetCoreBooking.Controllers
         }
 
         // POST: Bookings/Create
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         //Hỗ trợ chống giả mạo của MVC ghi một giá trị duy nhất vào cookie chỉ có HTTP và sau đó cùng một giá trị được ghi vào biểu mẫu.
@@ -74,13 +76,40 @@ namespace NetCoreBooking.Controllers
         {
             if (ModelState.IsValid) //ModelState.IsValid: mang giá trị false khi 1 (false) thuộc tính nào đó mang giá trị không hợp lệ.
             {
-                _context.Add(booking);
-                await _context.SaveChangesAsync();
-                //Redirect về trang index sau khi tạo xong
-                return RedirectToAction(nameof(Index));
+                if(booking.start_time<booking.end_time)
+                {
+                    try
+                    {
+                        _context.Add(booking);
+                        await _context.SaveChangesAsync();
+                        Alert("Tạo mới lịch thành công", NotificationType.success);
+                        Message("Tạo mới lịch thành công", NotificationType.success);
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (Exception)
+                    {
+                        Alert("Tạo mới lịch thất bại", NotificationType.error);
+                        Message("Tạo mới lịch không thành công", NotificationType.error);
+                        return RedirectToAction(nameof(Index));
+                    }
+                }  
+                else
+                {
+                    Alert("Hãy nhập đúng thứ tự ngày, thời gian bắt đầu phải nhỏ hơn thời gian kết thúc", NotificationType.error);
+                    Message("Hãy nhập đúng thứ tự ngày, thời gian bắt đầu phải nhỏ hơn thời gian kết thúc", NotificationType.error);
+                    return RedirectToAction(nameof(Index));
+
+                }    
+               
+                // Redirect về trang index sau khi tạo xong
+
+                
             }
+
+
             ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
             ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name", booking.users_id);
+            
             return View(booking);
         }
 
@@ -92,21 +121,20 @@ namespace NetCoreBooking.Controllers
             {
                 return NotFound();
             }
-            //Tìm kiếm một booking có mã là id
+
             var booking = await _context.Booking.FindAsync(id);
-            // Nếu không tồn tại thì không trả về dữ liệu nào
             if (booking == null)
             {
                 return NotFound();
             }
-            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
-            //---------------------------------------------------------------------------------------------------------------
-            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name", booking.users_id);
+
+            ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name");
+            ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name");
             return View(booking);
         }
 
         // POST: Bookings/Edit/5
-     
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("booking_id,booking_title,start_time,end_time,participants,note,room_id,users_id")] Booking booking)
@@ -123,6 +151,8 @@ namespace NetCoreBooking.Controllers
                 try
                 {
                     _context.Update(booking);
+                    Alert("Sửa lịch thành công", NotificationType.success);
+                    Message("Sửa lịch thành công", NotificationType.success);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -130,18 +160,20 @@ namespace NetCoreBooking.Controllers
                     //Nếu không tồn tại một booking nào có mã booking id thì sẽ không trả về dữ liệu
                     if (!BookingExists(booking.booking_id))
                     {
+                        Alert("Sửa lịch thất bại", NotificationType.error);
+                        Message("Sửa lịch không thành công", NotificationType.error);
                         return NotFound();
                     }
                     else
                     {
                         throw;
                     }
+                   
                 }
                 //Redirect đến trang index sau khi thực hiện xong tác vụ
                 return RedirectToAction(nameof(Index));
             }
             ViewData["room_id"] = new SelectList(_context.Set<Room>(), "room_id", "room_name", booking.room_id);
-            //---------------------------------------------------------------------------------------------------------------
             ViewData["users_id"] = new SelectList(_context.Set<User_s>(), "User_id", "User_name", booking.users_id);
             return View(booking);
         }
@@ -149,7 +181,7 @@ namespace NetCoreBooking.Controllers
         // GET: Bookings/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-           
+
             //Nếu id truyền vào mà không tồn tại thì không trả về dữ liệu
             if (id == null)
             {
@@ -174,9 +206,22 @@ namespace NetCoreBooking.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var booking = await _context.Booking.FindAsync(id);
-            _context.Booking.Remove(booking);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _context.Booking.Remove(booking);
+                await _context.SaveChangesAsync();
+                Alert("Xóa lịch thành công", NotificationType.success);
+                Message("Xóa lịch thành công", NotificationType.success);
+                return RedirectToAction(nameof(Index));
+            }
+            catch(Exception)
+            {
+                Alert("Xóa lịch thất bại", NotificationType.error);
+                Message("Xóa lịch không thành công", NotificationType.error);
+                return RedirectToAction(nameof(Index));
+            }
+           
+            
         }
         //Xác định khi nào bất kỳ phần tử nào trong tập dữ liệu thỏa mãn yêu cầu nào đó.
         private bool BookingExists(string id)

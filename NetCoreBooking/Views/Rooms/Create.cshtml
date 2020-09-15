@@ -48,13 +48,13 @@
                 <span asp-validation-for="capacity" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-info" style="font-size:1vw; color:white" />
+                <input type="submit" value="Tạo mới" class="btn btn-info" style="font-size:1vw; color:white" />
             </div>
         </form>
     </div>
 </div>
 
-<a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Back to Full List</a>
+<a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Quay về trang danh sách</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

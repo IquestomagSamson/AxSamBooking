@@ -72,17 +72,17 @@ body{
 <table class="table table-striped table-bordered display" style="width:100%">
     <thead>
         <tr>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Room ID</a>
+            <th style="text-align:center">
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Mã phòng họp</a>
             </th>
 
-            <th>
+            <th style="text-align:center">
                 Tên phòng
             </th>
-            <th>
+            <th style="text-align:center">
                 Sức chứa của phòng
             </th>
-            <th>Tùy chọn</th>
+            <th style="text-align:center">Tùy chọn</th>
 
 
         </tr>
@@ -102,8 +102,8 @@ body{
                     @Html.DisplayFor(modelItem => item.capacity)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.room_id">Edit</a>|
-                    <a asp-action="Delete" asp-route-id="@item.room_id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.room_id">Sửa</a>|
+                    <a asp-action="Delete" asp-route-id="@item.room_id">Xóa</a>
                 </td>
             </tr>
         }
@@ -127,20 +127,7 @@ body{
         </a>
     }
 }
-@*<a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       style="font-size:1vw;" class="btn btn-outline-info @prevDisabled">
-        Previous
-    </a>
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-outline-info @nextDisabled" style="font-size:1vw;">
-        Next
-    </a>*@
+
 <br />
 <br />
 <a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Quay về trang danh sách</a>

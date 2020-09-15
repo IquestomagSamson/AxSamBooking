@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 using Booking_Room.Models;
 using NetCoreBooking.Data;
 using NetCoreBooking_PagedList;
-
+using static NetCoreBooking.Enums.Enums;
 namespace NetCoreBooking.Controllers
 {
-    public class RoomsController : Controller
+    public class RoomsController : BaseNotification
     {
         private readonly AxContext _context;
         //Read comment in Booking controller and UserController
@@ -84,9 +84,22 @@ namespace NetCoreBooking.Controllers
         {
             if (ModelState.IsValid) //ModelState.IsValid: mang giá trị false khi 1 (false) thuộc tính nào đó mang giá trị không hợp lệ.
             {
-                _context.Add(room);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+
+                    _context.Add(room);
+                    await _context.SaveChangesAsync();
+                    Alert("Tạo mới phòng họp thành công", NotificationType.success);
+                    Message("Tạo mới phòng họp thành công", NotificationType.success);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    Alert("Tạo mới phòng họp không thành công", NotificationType.error);
+                    Message("Tạo mới phòng họp không thành công", NotificationType.error);
+                    return RedirectToAction(nameof(Index));
+                }
+                
             }
             return View(room);
         }
@@ -124,12 +137,16 @@ namespace NetCoreBooking.Controllers
                 try
                 {
                     _context.Update(room);
+                    Alert("Sửa phòng họp thành công", NotificationType.success);
+                    Message("Sửa phòng họp thành công", NotificationType.success);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!RoomExists(room.room_id))
                     {
+                        Alert("Sửa phòng họp không thành công", NotificationType.error);
+                        Message("Sửa phòng họp không thành công", NotificationType.error);
                         return NotFound();
                     }
                     else
@@ -166,9 +183,26 @@ namespace NetCoreBooking.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var room = await _context.Room.FindAsync(id);
-            _context.Room.Remove(room);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _context.Room.Remove(room);
+                await _context.SaveChangesAsync();
+                Alert("Xóa phòng họp thành công", NotificationType.success);
+                Message("Xóa phòng họp thành công", NotificationType.success);
+                return RedirectToAction(nameof(Index));
+
+            }
+
+            catch
+            {
+                Alert("Xóa phòng họp không thành công", NotificationType.error);
+                Message("Xóa phòng họp không thành công", NotificationType.error);
+                return RedirectToAction(nameof(Index));
+            }
+            
+            //_context.Room.Remove(room);
+            //await _context.SaveChangesAsync();
+            //return RedirectToAction(nameof(Index));
         }
 
         private bool RoomExists(string id)

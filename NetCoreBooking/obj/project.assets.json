@@ -11,6 +11,15 @@
           "lib/Antlr3.Runtime.dll": {}
         }
       },
+      "AWSSDK/2.3.55.2": {
+        "type": "package",
+        "compile": {
+          "lib/net45/AWSSDK.dll": {}
+        },
+        "runtime": {
+          "lib/net45/AWSSDK.dll": {}
+        }
+      },
       "bootstrap/4.5.2": {
         "type": "package",
         "dependencies": {
@@ -4870,6 +4879,12 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "toastr/2.1.1": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.6.3"
+        }
+      },
       "X.PagedList/8.0.7": {
         "type": "package",
         "compile": {
@@ -4941,6 +4956,28 @@
         "antlr.nuspec",
         "lib/Antlr3.Runtime.dll",
         "lib/Antlr3.Runtime.pdb"
+      ]
+    },
+    "AWSSDK/2.3.55.2": {
+      "sha512": "zy/6psTOx9c8LaZqL1tUtiGKMpd35b16TNRctz/N6Qc6hqFeOjyZ5WVhn89szJkkZtotcMFyfq58Y2RfyRxxUg==",
+      "type": "package",
+      "path": "awssdk/2.3.55.2",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.2.3.55.2.nupkg.sha512",
+        "awssdk.nuspec",
+        "lib/net35/AWSSDK.dll",
+        "lib/net35/AWSSDK.pdb",
+        "lib/net45/AWSSDK.dll",
+        "lib/net45/AWSSDK.pdb",
+        "lib/portable-wpa+netcore45/AWSSDK.dll",
+        "lib/windows8/AWSSDK.dll",
+        "lib/windowsphone8/AWSSDK.dll",
+        "tools/account-management.ps1",
+        "tools/net35/install.ps1",
+        "tools/net45/install.ps1"
       ]
     },
     "bootstrap/4.5.2": {
@@ -13520,6 +13557,23 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "toastr/2.1.1": {
+      "sha512": "h/688XvzYk1xVYn213ryU+HCElE4n/drYzAHJkAi9LsSUPS3EbI6wGlvCglBUt7i4h5iESgAVarYaigjQmVpqg==",
+      "type": "package",
+      "path": "toastr/2.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/content/toastr.css",
+        "content/content/toastr.less",
+        "content/content/toastr.min.css",
+        "content/content/toastr.scss",
+        "content/scripts/toastr.js",
+        "content/scripts/toastr.min.js",
+        "toastr.2.1.1.nupkg.sha512",
+        "toastr.nuspec"
+      ]
+    },
     "X.PagedList/8.0.7": {
       "sha512": "eX1Wd5MrIehx9RaFWketo1LrZJDsEcJYx06LBQnaMNZX+CQgUS4A0z7GeaotkSZo6Cau6IGllj26XPpO8Lns4Q==",
       "type": "package",
@@ -13583,6 +13637,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "AWSSDK >= 2.3.55.2",
       "Antlr >= 3.5.0.2",
       "Microsoft.AspNet.Mvc >= 5.2.7",
       "Microsoft.AspNetCore >= 2.1.7",
@@ -13611,7 +13666,8 @@
       "X.PagedList.Web.Common >= 8.0.7",
       "bootstrap >= 4.5.2",
       "jQuery >= 3.5.1",
-      "jquery.datatables >= 1.10.15"
+      "jquery.datatables >= 1.10.15",
+      "toastr >= 2.1.1"
     ]
   },
   "packageFolders": {
@@ -13651,6 +13707,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "AWSSDK": {
+            "target": "Package",
+            "version": "[2.3.55.2, )"
+          },
           "Antlr": {
             "target": "Package",
             "version": "[3.5.0.2, )"
@@ -13773,6 +13833,10 @@
           "jquery.datatables": {
             "target": "Package",
             "version": "[1.10.15, )"
+          },
+          "toastr": {
+            "target": "Package",
+            "version": "[2.1.1, )"
           }
         },
         "imports": [
@@ -13806,6 +13870,16 @@
       "warningLevel": 1,
       "message": "Package 'Antlr 3.5.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Antlr",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AWSSDK 2.3.55.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "AWSSDK",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
       ]

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Be3Y+De5aVT9rMZbF8t1awY0cv/trRWUUpGfO0VKlH0BEp+NkXnhDUe+nNmK2luDQ/FgxZ7Gq16FMIpH386HlA==",
+  "dgSpecHash": "Akz1YFh0C84NCn4+mE9j1oATsNAZiK4VBzegPbuGbpEyM9qu8KlZ5nkY09XTuJSWxtu3huq6JrkqbL9A6OGpwQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Huy\\Desktop\\Ky_9\\TTCN\\NetCoreBooking\\NetCoreBooking\\NetCoreBooking.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Huy\\.nuget\\packages\\antlr\\3.5.0.2\\antlr.3.5.0.2.nupkg.sha512",
+    "C:\\Users\\Huy\\.nuget\\packages\\awssdk\\2.3.55.2\\awssdk.2.3.55.2.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\bootstrap\\4.5.2\\bootstrap.4.5.2.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\entityframework\\6.1.3\\entityframework.6.1.3.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\jquery\\3.5.1\\jquery.3.5.1.nupkg.sha512",
@@ -314,6 +315,7 @@
     "C:\\Users\\Huy\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\Huy\\.nuget\\packages\\toastr\\2.1.1\\toastr.2.1.1.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\x.pagedlist\\8.0.7\\x.pagedlist.8.0.7.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\x.pagedlist.entityframework\\1.0.1\\x.pagedlist.entityframework.1.0.1.nupkg.sha512",
     "C:\\Users\\Huy\\.nuget\\packages\\x.pagedlist.mvc\\8.0.7\\x.pagedlist.mvc.8.0.7.nupkg.sha512",
@@ -337,6 +339,16 @@
       "warningLevel": 1,
       "message": "Package 'Antlr 3.5.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Antlr",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AWSSDK 2.3.55.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "AWSSDK",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
       ]

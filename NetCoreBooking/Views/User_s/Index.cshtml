@@ -49,7 +49,7 @@ body{
 </style>
 
 <p>
-    <a asp-action="Create" class="btn btn-info" style="font-size:1vw; color:white">Create</a>
+    <a asp-action="Create" class="btn btn-info" style="font-size:1vw; color:white">Tạo mới</a>
 </p>
 
 <br />
@@ -57,7 +57,7 @@ body{
 
 
     <div class="form-actions no-color d-flex d-inline-block">
-        <input type="text" class="searchTerm" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="What are you looking for?">
+        <input type="text" class="searchTerm" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Bạn đăng muốn tìm người dùng nào?">
         <button type="submit" class="searchButton" value="Search">
             <i class="fa fa-search"></i>
         </button>
@@ -67,11 +67,11 @@ body{
 <table class="table table-striped table-bordered display" style="width:100%">
     <thead>
         <tr>
-            <th>
+            <th style="text-align:center">
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">User ID</a>
             </th>
-            <th>User name</th>
-            <th></th>
+            <th style="text-align:center">User name</th>
+            <th style="text-align:center">Tùy chọn</th>
         </tr>
     </thead>
     <tbody>
@@ -87,8 +87,8 @@ body{
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.User_id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.User_id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.User_id">Sửa</a> |
+                    <a asp-action="Delete" asp-route-id="@item.User_id">Xóa</a>
                 </td>
             </tr>
         }

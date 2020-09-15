@@ -9,12 +9,15 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-
+        <link href="~/css/sweetalert.css" rel="stylesheet" />
+        <script src="~/js/sweetalert.min.js"></script>
         <link href="//fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
         <link href="~/css/Table.css" rel="stylesheet" />
         <link href="~/css/style-starter.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+        <link href="../wwwroot/css/qunit.css" rel="stylesheet" type="text/css" />
+        <link href="../wwwroot/css/toastr.css" rel="stylesheet" type="text/css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -32,9 +35,38 @@
             color: white;
             text-align: center;
         }
+        #hidesomething {
+          -webkit-animation: seconds 1.0s forwards;
+          -webkit-animation-iteration-count: 1;
+          -webkit-animation-delay: 3s;
+          animation: seconds 1.0s forwards;
+          animation-iteration-count: 1;
+          animation-delay: 3s;
+          position: relative;
+          /*background: red;*/
+        }
+        @Html.Raw("@")-webkit-keyframes seconds {
+          0% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            left: -9999px;
+          }
+        }
+        @Html.Raw("@")keyframes seconds {
+          0% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            left: -9999px;
+          }
+        }
+
     </style>
 </head>
-<body style="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%)">   
+<body style="background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%)">
     <div class="w3l-bootstrap-header">
         <nav class="navbar navbar-expand-lg navbar-light py-lg-2 py-2" style="background-color:aliceblue">
             <div class="container">
@@ -48,31 +80,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a asp-area="" asp-controller="Home" asp-action="Index"><h4><span style="color:black">Home</span></h4></a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index"><h4><span style="color:black">Trang chủ</span></h4></a>
                         </li>
 
                         <li class="nav-item">
-                            <a asp-area="" asp-controller="Bookings" asp-action="Index"><h4><span style="  color: black">Booking</span></h4></a>
+                            <a asp-area="" asp-controller="Bookings" asp-action="Index"><h4><span style="  color: black">Lịch đặt phòng họp</span></h4></a>
                         </li>
 
                         <li class="nav-item">
-                            <a asp-area="" asp-controller="User_s" asp-action="Index"><h4><span style="color: black">Users</span></h4></a>
+                            <a asp-area="" asp-controller="User_s" asp-action="Index"><h4><span style="color: black">Người dùng</span></h4></a>
                         </li>
 
                         <li class="nav-item">
-                            <a asp-area="" asp-controller="Rooms" asp-action="Index"><h4><span style=" color: black">Room</span></h4></a>
+                            <a asp-area="" asp-controller="Rooms" asp-action="Index"><h4><span style=" color: black">Phòng họp</span></h4></a>
                         </li>
 
-                        @*<li class="nav-item">
-                            <a asp-area="" asp-controller="Home" asp-action="About"><h4><span style="color: black">About</span></h4></a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Home" asp-action="Contact"><h4><span style=" color: black">Contact</span></h4></a>
-                        </li>*@
 
 
                     </ul>
-                    
+
                 </div>
             </div>
         </nav>
@@ -80,9 +106,10 @@
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content" style="font-size: 1vw">
-        
+        <div id="hidesomething"> @Html.Partial("_NotificationPanel")</div>
+
         @RenderBody()
-      
+
     </div>
 
     <environment include="Development">
@@ -114,9 +141,9 @@
             <div class="container">
                 <div class="d-grid grid-col-4 footer-top-29">
                     <div class="footer-list-29 footer-1">
-                        <h6 class="footer-title-29">Contact Us</h6>
+                        <h6 class="footer-title-29">Liên hệ với chúng tôi</h6>
                         <ul>
-                            <li><p><span class="fa fa-map-marker"></span> 4th Floor, 29T1 Tower, N05 Area, Hoang Dao Thuy Street, Trung Hoa Ward, Cau Giay District, Ha Noi.</p></li>
+                            <li><p><span class="fa fa-map-marker"></span>Tầng 4, Tòa nhà 29T1 - N05 đường Hoàng Đạo Thúy, Phường Trung Hòa, Quận Cầu Giấy, Thành phố Hà Nội.</p></li>
                             <li><a href="tel: +84-246 269 5915"><span class="fa fa-phone"></span> +84-246 269 5917</a></li>
                             <li><a href="pr@hyperlogy.com" class="mail"><span class="fa fa-envelope-open-o"></span> pr@hyperlogy.com</a></li>
                         </ul>
@@ -130,7 +157,7 @@
                     </div>
                     <div class="footer-list-29 footer-2">
                         <ul>
-                            <h6 class="footer-title-29">Featured Links</h6>
+                            <h6 class="footer-title-29">Sản phẩm liên quan</h6>
                             <li><a href="https://ebank.baovietbank.vn/">Bank</a></li>
                             <li><a href="http://www.vnsteel.vn/">Viet Nam Steel Corporation</a></li>
                             <li><a href="https://mobifone.vn/wps/portal/public">Mobiphone</a></li>
@@ -145,34 +172,34 @@
                             <input type="email" name="email" placeholder="Email" required="">
                             <button><span class="fa fa-envelope-o"></span></button>
                         </form>
-                        <p style="font-size:1vw;">Subscribe and get our weekly newsletter</p>
-                        <p style="font-size:1vw;">We'll never share your email address</p>
+                        <p style="font-size:1vw;">Đăng ký và nhận bản tin hàng tuần của chúng tôi </p>
+                        <p style="font-size:1vw;">Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn</p>
 
                     </div>
-                    
+
                     <div class="footer-list-29 footer-4">
                         <ul>
-                            <h6 class="footer-title-29">Quick Links</h6>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Index"><h4><span style="color:white">Home</span></h4></a></li>
-                            <li> <a asp-area="" asp-controller="Bookings" asp-action="Index"><h4><span style="  color: white">Booking</span></h4></a></li>
-                            <li> <a asp-area="" asp-controller="User_s" asp-action="Index"><h4><span style="color: white">Users</span></h4></a></li>
-                            <li><a asp-area="" asp-controller="Rooms" asp-action="Index"><h4><span style=" color: white">Room</span></h4></a></li>
+                            <h6 class="footer-title-29">Truy cập nhanh</h6>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index"><h4><span style="color:white">Trang chủ</span></h4></a></li>
+                            <li> <a asp-area="" asp-controller="Bookings" asp-action="Index"><h4><span style="  color: white">Lịch đặt phòng họp</span></h4></a></li>
+                            <li> <a asp-area="" asp-controller="User_s" asp-action="Index"><h4><span style="color: white">Người dùng</span></h4></a></li>
+                            <li><a asp-area="" asp-controller="Rooms" asp-action="Index"><h4><span style=" color: white">Phòng họp</span></h4></a></li>
                             @*<li><a asp-area="" asp-controller="Home" asp-action="About"><h4><span style="color: white">About</span></h4></a></li>
-                            <li> <a asp-area="" asp-controller="Home" asp-action="Contact"><h4><span style=" color: white">Contact</span></h4></a></li>*@
+                                <li> <a asp-area="" asp-controller="Home" asp-action="Contact"><h4><span style=" color: white">Contact</span></h4></a></li>*@
                         </ul>
                     </div>
                 </div>
                 <div class="d-grid grid-col-2 bottom-copies">
-                    <p class="copy-footer-29">© 2020 Mastery.  Designed by Le Van Huy - レブンフィ</p>
+                    <p class="copy-footer-29">© 2020 Mastery.  Được thiết kế bởi Lê Văn Huy - レブンフィ</p>
                     <ul class="list-btm-29">
-                        <li><a href="#link">Privacy policy</a></li>
-                        <li><a href="#link">Terms of service</a></li>
+                        <li><a href="#link">Chính sách bảo mật</a></li>
+                        <li><a href="#link">Điều khoản dịch vụ</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <!-- move top -->
-        <button onclick="topFunction()" id="movetop" title="Go to top">
+        <button onclick="topFunction()" id="movetop" title="Lên đầu trang">
             <span class="fa fa-angle-up"></span>
         </button>
         <script>

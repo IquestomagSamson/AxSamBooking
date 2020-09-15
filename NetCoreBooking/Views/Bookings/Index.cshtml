@@ -2,7 +2,10 @@
 @model PaginatedList<Booking_Room.Models.Booking>
 @using PagedList.Mvc;
 @{
+    ViewBag.Title = "title";
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <style>
@@ -45,9 +48,9 @@ body{
   cursor: pointer;
   font-size: 20px;
 }
-
-
 </style>
+
+
 <p>
     <a asp-action="Create" class="btn btn-info" style="font-size:1vw; color:white">Tạo mới</a>
 </p>
@@ -70,7 +73,7 @@ body{
             <th style="text-align:center">Thời gian bắt đầu</th>
             <th style="text-align:center">Thời gian kết thúc</th>
 
-            <th style="text-align:center">Thành phần tham dự</thstyle="text-align:center">
+            <th style="text-align:center">Thành phần tham dự</th>
             <th style="text-align:center">Ghi chú</th>
             <th style="text-align:center">Mã phòng họp</th>
             <th style="text-align:center">Người đặt phòng</th>
@@ -107,8 +110,8 @@ body{
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.booking_id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.booking_id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.booking_id">Sửa</a> |
+                    <a asp-action="Delete" asp-route-id="@item.booking_id">Xóa</a>
                 </td>
             </tr>
         }
@@ -120,35 +123,17 @@ body{
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-@*<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   style="font-size:1vw;" class="btn btn-outline-info @prevDisabled">
-    Trước
-</a>
-
-
-
-
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-outline-info @nextDisabled" style="font-size:1vw;">
-    Sau
-</a>*@
-@{ 
+@{
     int i;
     for (i = 1; i <= Model.TotalPages; i++)
     {
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber=@i
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-outline-info" style="font-size:1vw;">
-        @(i)
-    </a>
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber=@i
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-outline-info" style="font-size:1vw;">
+            @(i)
+        </a>
     }
 }
 <br />

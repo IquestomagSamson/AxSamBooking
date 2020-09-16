@@ -52,7 +52,7 @@ namespace NetCoreBooking.Controllers
             //Sắp xếp lại theo id của lịch booking phòng họp
             booking = booking.OrderByDescending(s => s.booking_id);
             //Set số lượng bản ghi hiện lên mỗi page là 5
-            int pageSize = 5;
+            int pageSize = 10;
             //Trả về View
             return View(await PaginatedList<Booking>.CreateAsync(booking.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
@@ -86,8 +86,9 @@ namespace NetCoreBooking.Controllers
                         Message("Tạo mới lịch thành công", NotificationType.success);
                         return RedirectToAction(nameof(Index));
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
+                        //Alert(e.ToString(), NotificationType.error);
                         Alert("Tạo mới lịch thất bại", NotificationType.error);
                         Message("Tạo mới lịch không thành công", NotificationType.error);
                         return RedirectToAction(nameof(Index));

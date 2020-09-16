@@ -68,9 +68,9 @@ body{
     <thead>
         <tr>
             <th style="text-align:center">
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">User ID</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Mã người dùng</a>
             </th>
-            <th style="text-align:center">User name</th>
+            <th style="text-align:center">Tên người dùng</th>
             <th style="text-align:center">Tùy chọn</th>
         </tr>
     </thead>
@@ -87,7 +87,9 @@ body{
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.User_id">Sửa</a> |
+                    <a asp-action="Edit" asp-route-id="@item.User_id">
+                       Sửa
+                    </a> |
                     <a asp-action="Delete" asp-route-id="@item.User_id">Xóa</a>
                 </td>
             </tr>
@@ -112,20 +114,7 @@ body{
         </a>
     }
 }
-@*<a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       style="font-size:1vw;" class="btn btn-outline-info @prevDisabled">
-        Previous
-    </a>
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-outline-info @nextDisabled" style="font-size:1vw;">
-        Next
-    </a>*@
+
 <br />
 <br />
 <a asp-action="Index" type="button" class="btn btn-link" style="font-size:1vw; color:dodgerblue">Quay về trang danh sách</a>

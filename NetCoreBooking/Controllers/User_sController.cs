@@ -56,7 +56,7 @@ namespace NetCoreBooking.Controllers
             //Sắp xếp dữ liệu trả về theo thứ tự giảm dần của user Id
             user_s = user_s.OrderByDescending(s => s.User_id);
            //Set số lượng bản ghi được phép xuất hiện trong một màn trang
-            int pageSize = 5;
+            int pageSize = 10;
             return View(await PaginatedList<User_s>.CreateAsync(user_s.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -183,6 +183,7 @@ namespace NetCoreBooking.Controllers
             }
             //Tìm kiếm một người dùng khi người đó có ID là ID được truyền vào
             var user_s = await _context.User_s
+               
                 .FirstOrDefaultAsync(m => m.User_id == id);
             if (user_s == null)
             {

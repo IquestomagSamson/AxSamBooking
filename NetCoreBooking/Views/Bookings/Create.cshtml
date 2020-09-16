@@ -31,50 +31,51 @@
 <br />
 <br />
 
-
+<div id="title"><span>Create</span></div>
 <div class="row">
+    
+    <div class="col-md-12">
 
-    <div class="col-md-4">
-        <div id="title"><span>Create</span></div>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+
+            <div class="form-group col-md-6">
                 <label asp-for="booking_id" class="control-label"></label>
-                <input asp-for="booking_id" class="form-control" placeholder="Nhập vào mã booking cuộc họp của bạn...." style="font-size:1vw;"  />
-                <span asp-validation-for="booking_id" class="text-danger" oninvalid="setCustomValidity('Please enter at least 5 characters')"></span>
+                <input asp-for="booking_id" class="form-control" placeholder="Nhập vào mã booking cuộc họp của bạn...." style="font-size:1vw;" />
+                <span asp-validation-for="booking_id" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="booking_title" class="control-label"></label>
                 <input asp-for="booking_title" class="form-control" placeholder="Tiêu đề cuộc họp...." style="font-size:1vw" />
                 <span asp-validation-for="booking_title" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="start_time" class="control-label"></label>
                 <input asp-for="start_time" class="form-control" style="font-size:1vw" />
                 <span asp-validation-for="start_time" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="end_time" class="control-label"></label>
                 <input asp-for="end_time" class="form-control" style="font-size:1vw" />
                 <span asp-validation-for="end_time" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="participants" class="control-label"></label>
-                <input asp-for="participants" class="form-control" placeholder="Ghi chú những người tham gia cuộc họp...." style="font-size:1vw" />
+                <textarea  asp-for="participants" class="form-control" placeholder="Ghi chú những người tham gia cuộc họp...." style="font-size:1vw"></textarea>
                 <span asp-validation-for="participants" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="note" class="control-label"></label>
-                <input asp-for="note" class="form-control" placeholder="Những chú ý về cuộc họp...." style="font-size:1vw" />
+                <textarea  asp-for="note" class="form-control" placeholder="Những chú ý về cuộc họp...." style="font-size:1vw" ></textarea>
                 <span asp-validation-for="note" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="room_id" class="control-label">Mã phòng</label>
                 <select asp-for="room_id" class="form-control" asp-items="ViewBag.room_id" style="font-size:1vw"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group col-md-6">
                 <label asp-for="users_id" class="control-label"></label>
-                <select asp-for="users_id" class="form-control" asp-items="ViewBag.users_id"  style="font-size:1vw" ></select>
+                <select asp-for="users_id" class="form-control" asp-items="ViewBag.users_id" style="font-size:1vw"></select>
                 <span asp-validation-for="users_id" class="text-danger"></span>
             </div>
             <div class="form-group">

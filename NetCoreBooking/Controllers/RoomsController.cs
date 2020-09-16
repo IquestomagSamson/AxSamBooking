@@ -47,7 +47,7 @@ namespace NetCoreBooking.Controllers
             }
             room = room.OrderByDescending(s => s.room_id);
 
-            int pageSize = 5;
+            int pageSize = 10;
             return View(await PaginatedList<Room>.CreateAsync(room.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 

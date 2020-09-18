@@ -106,9 +106,10 @@ namespace NetCoreBooking.Controllers
                 }
                 catch
                 {
-                    Alert("Tạo mới lịch thất bại", NotificationType.error);
-                    Message("Tạo mới lịch không thành công", NotificationType.error);
-                    return RedirectToAction(nameof(Index));
+                    
+                    Alert("Trùng mã. Tạo người dùng không thành công.", NotificationType.error);
+                    Message("Trùng mã. Tạo người dùng không thành công.", NotificationType.error);
+                    //return RedirectToAction(nameof(Index));
                 }
                 //_context.Add(user_s);
                 //await _context.SaveChangesAsync();

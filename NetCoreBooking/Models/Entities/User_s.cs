@@ -15,14 +15,14 @@
         }
 
         [Key]
-        [Required(ErrorMessage = "Hãy nhập mã người dùng.")]
+        [Required(ErrorMessage = "Hãy nhập mã người dùng")]
         [StringLength(10)]
-        [Display(Name ="Mã người dùng")]
+        [Display(Name ="User ID")]
         public string User_id { get; set; }
 
-        [Required(ErrorMessage = "Hãy nhập tên người dùng.")]
+        [Required(ErrorMessage = "Hãy nhập tên người dùng")]
         [StringLength(50)]
-        [Display(Name = "Tên người dùng")]
+        [Display(Name = "User name")]
         public string User_name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

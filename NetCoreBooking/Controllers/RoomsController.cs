@@ -95,9 +95,9 @@ namespace NetCoreBooking.Controllers
                 }
                 catch
                 {
-                    Alert("Tạo mới phòng họp không thành công", NotificationType.error);
-                    Message("Tạo mới phòng họp không thành công", NotificationType.error);
-                    return RedirectToAction(nameof(Index));
+                    Alert("Trùng mã. Tạo mới phòng họp không thành công", NotificationType.error);
+                    Message("Trùng mã. Tạo mới phòng họp không thành công", NotificationType.error);
+                    //return RedirectToAction(nameof(Index));
                 }
                 
             }

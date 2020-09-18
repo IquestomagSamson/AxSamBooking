@@ -89,9 +89,9 @@ namespace NetCoreBooking.Controllers
                     catch (Exception e)
                     {
                         //Alert(e.ToString(), NotificationType.error);
-                        Alert("Tạo mới lịch thất bại", NotificationType.error);
-                        Message("Tạo mới lịch không thành công", NotificationType.error);
-                        return RedirectToAction(nameof(Index));
+                        Alert("Trùng mã. Tạo mới lịch thất bại", NotificationType.error);
+                        Message("Trùng mã. Tạo mới lịch không thành công", NotificationType.error);
+                        //return RedirectToAction(nameof(Index));
                     }
                 }  
                 else
